@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SignalV</string>
+    <string name="connect_status">链接状态：</string>
+    <string name="signal_level">信号值：</string>
+    <string name="enter_int">请输入整数</string>
+    <string name="reset_signal_level">重置信号等级</string>
+</resources>

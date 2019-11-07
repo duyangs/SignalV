@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:padding="10dp">
+
+    <com.duangs.signalv.SignalView
+        android:id="@+id/signal"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
+        app:connected="false"
+        app:corner_radius="5"
+        app:level_color="@color/colorAccent"
+        app:primary_color="@color/colorPrimary"
+        app:signal_maximum="5"
+        app:signal_level="3"
+        app:spacing="1"
+        app:unit_width="30"
+        app:shadow_color="@color/colorPrimaryDark"
+        app:shadow_open="true"
+        android:layout_gravity="center_horizontal"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="50dp"
+        android:padding="10dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/connect_status"/>
+
+        <Switch
+            android:id="@+id/connectSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/signal_level"/>
+
+        <EditText
+            android:id="@+id/levelEdit"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:digits="0123456789"
+            android:hint="@string/enter_int"/>
+
+        <Button
+            android:id="@+id/resetBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/reset_signal_level"/>
+
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="(输入值需小于等于最大信号值signalMaximum)"/>
+
+
+</LinearLayout>

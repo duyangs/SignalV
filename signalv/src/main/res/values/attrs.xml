@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SignalView">
+
+        <attr name="signal_maximum" format="reference|integer"/><!--信号柱数量-->
+        <attr name="signal_level" format="integer"/><!--信号等级-->
+        <attr name="primary_color" format="reference|color"/><!--无信号颜色-->
+        <attr name="level_color" format="reference|color"/><!--有信号颜色-->
+        <attr name="spacing" format="integer"/><!--间隙-->
+        <attr name="unit_width" format="integer"/><!--信号柱宽度-->
+        <attr name="corner_radius" format="float"/><!--信号柱圆角半径-->
+        <attr name="connected" format="boolean"/><!--链接状态-->
+        <attr name="shadow_color" format="reference|color"/><!--阴影颜色-->
+        <attr name="shadow_open" format="boolean"/><!--打开阴影-->
+
+    </declare-styleable>
+</resources>
