@@ -79,6 +79,10 @@ class SignalView : View {
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
+        initSize()
+    }
+
+    private fun initSize(){
         mRectHeight = height
         mRectWidth = width / signalMaximum
     }
@@ -182,8 +186,7 @@ class SignalView : View {
         }
         if (signalLevel != level){
             signalLevel = level
-            mRectHeight = height
-            mRectWidth = width / signalMaximum
+            initSize()
             this.invalidate()
         }
     }
