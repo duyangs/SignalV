@@ -135,7 +135,7 @@ class SignalView : View {
     @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-
+        Log.d("SignalView","onDraw#$mRectWidth")
         mPaint?.apply {
             strokeWidth = unitWidth.toFloat()
             strokeCap = Paint.Cap.ROUND
@@ -149,6 +149,7 @@ class SignalView : View {
                     color = primaryColor
                     style = Paint.Style.FILL
                 }
+                Log.d("SignalView","onDraw#$mRectWidth")
                 val x = (mRectWidth * (i + 0.5) + spacing).toFloat()
                 // 绘制信号线
                 canvas?.drawLine(
@@ -181,14 +182,16 @@ class SignalView : View {
         }
         if (signalLevel != level){
             signalLevel = level
-            invalidate()
+            mRectHeight = height
+            mRectWidth = width / signalMaximum
+            this.invalidate()
         }
     }
 
     fun setConnected(connected:Boolean){
         if (this.connected != connected){
             this.connected = connected
-            invalidate()
+            this.invalidate()
         }
     }
 

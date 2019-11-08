@@ -7,7 +7,6 @@ import android.text.TextWatcher
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.Exception
-import kotlin.math.sign
 
 class MainActivity : AppCompatActivity() {
 
