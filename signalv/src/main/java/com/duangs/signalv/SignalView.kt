@@ -131,7 +131,6 @@ class SignalView : View {
                 width = width.coerceAtMost(specSize)
             }
         }
-        mRectWidth = width
         return width
     }
 

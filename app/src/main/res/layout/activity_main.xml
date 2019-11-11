@@ -10,15 +10,15 @@
 
     <com.duangs.signalv.SignalView
         android:id="@+id/signal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
         app:connected="false"
         app:level_color="@color/colorAccent"
         app:primary_color="@color/colorPrimary"
         app:signal_maximum="5"
         app:signal_level="3"
         app:spacing="1"
-        app:unit_width="5"
+        app:unit_width="30"
         app:shadow_color="@color/colorPrimaryDark"
         app:shadow_open="true"
         android:layout_gravity="center_horizontal"/>
