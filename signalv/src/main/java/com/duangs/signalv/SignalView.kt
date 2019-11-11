@@ -121,6 +121,7 @@ class SignalView : View {
         // 测量大小,从xml中获取
         val specSize = MeasureSpec.getSize(widthMeasureSpec)
 
+        Log.d("SignalView","measureWidth#specMode $specMode")
         if (specMode == MeasureSpec.EXACTLY) {
             width = specSize
         } else {
