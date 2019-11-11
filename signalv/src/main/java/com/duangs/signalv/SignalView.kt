@@ -194,6 +194,7 @@ class SignalView : View {
     fun setConnected(connected:Boolean){
         if (this.connected != connected){
             this.connected = connected
+            initSize()
             this.invalidate()
         }
     }
