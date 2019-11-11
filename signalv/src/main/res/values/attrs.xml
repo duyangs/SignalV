@@ -8,7 +8,6 @@
         <attr name="level_color" format="reference|color"/><!--有信号颜色-->
         <attr name="spacing" format="integer"/><!--间隙-->
         <attr name="unit_width" format="integer"/><!--信号柱宽度-->
-        <attr name="corner_radius" format="float"/><!--信号柱圆角半径-->
         <attr name="connected" format="boolean"/><!--链接状态-->
         <attr name="shadow_color" format="reference|color"/><!--阴影颜色-->
         <attr name="shadow_open" format="boolean"/><!--打开阴影-->

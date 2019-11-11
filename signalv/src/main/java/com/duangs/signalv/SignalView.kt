@@ -18,7 +18,6 @@ class SignalView : View {
     private var levelColor: Int = Color.WHITE//有信号颜色
     private var spacing: Int = 5 //间隙
     private var unitWidth: Int = 5 //信号柱宽度
-    private var cornerRadius: Float = 5F //信号柱圆角半径
     private var connected: Boolean = true //链接状态
     private var shadowColor: Int = Color.GRAY //阴影颜色
     private var shadowOpen: Boolean = false //是否开启阴影效果
@@ -56,7 +55,6 @@ class SignalView : View {
             levelColor = typedArray.getColor(R.styleable.SignalView_level_color, levelColor)
             spacing = typedArray.getInt(R.styleable.SignalView_spacing, spacing)
             unitWidth = typedArray.getInt(R.styleable.SignalView_unit_width, unitWidth)
-            cornerRadius = typedArray.getFloat(R.styleable.SignalView_corner_radius, cornerRadius)
             connected = typedArray.getBoolean(R.styleable.SignalView_connected, connected)
             shadowColor = typedArray.getColor(R.styleable.SignalView_shadow_color,shadowColor)
             shadowOpen = typedArray.getBoolean(R.styleable.SignalView_shadow_open,shadowOpen)
