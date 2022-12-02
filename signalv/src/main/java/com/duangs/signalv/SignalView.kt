@@ -6,9 +6,11 @@ import android.content.res.TypedArray
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.RectF
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
+import androidx.annotation.ColorInt
 
 /**
  * @author DuYang
@@ -30,11 +32,13 @@ class SignalView : View {
     /**
      * signal pole primary color, default value: black
      */
+    @ColorInt
     private var primaryColor: Int = Color.BLACK
 
     /**
      * signal pole level color, default color: white
      */
+    @ColorInt
     private var levelColor: Int = Color.WHITE
 
     /**
@@ -55,6 +59,7 @@ class SignalView : View {
     /**
      * signal pole shadow color, default color: gray
      */
+    @ColorInt
     private var shadowColor: Int = Color.GRAY
 
     /**
@@ -186,8 +191,6 @@ class SignalView : View {
         super.onDraw(canvas)
         Log.d("SignalView", "onDraw#$mRectWidth")
         mPaint?.also {
-            it.strokeWidth = unitWidth.toFloat()
-            it.strokeCap = Paint.Cap.ROUND
             it.style = Paint.Style.FILL
             canvasSignalPole(it, canvas)
             canvasSignalConnectState(it, canvas)
@@ -208,19 +211,23 @@ class SignalView : View {
         (0..signalMaximum).forEach { index ->
             // 前signalValue信号柱绘制实心颜色
             paint.color = if (index < signalLevel) levelColor else primaryColor
-            val rectX = getRectX(index)
+            val rectStartX = getRectX(index)
+            val rectStopX = rectStartX + unitWidth
+
             // 绘制信号线
-            canvas?.drawLine(rectX, getRectStartY(index), rectX, rectStopY, paint)
+            val rect = RectF(rectStartX, getRectStartY(index), rectStopX, rectStopY)
+            canvas?.drawRoundRect(rect, 5f, 5f, paint)
         }
     }
 
     private fun canvasSignalConnectState(paint: Paint, canvas: Canvas?) {
         if (connected) return
         paint.color = primaryColor
+        paint.strokeWidth = unitWidth.toFloat()
+        paint.strokeCap = Paint.Cap.ROUND
         val sum = 1f
         val xDifference = 0.2f
         val yDifference = 0.1f
-
         canvas?.drawLine(
             width * xDifference,
             height * yDifference,
@@ -250,4 +257,101 @@ class SignalView : View {
         }
     }
 
+    private fun build(builder: Builder) {
+        signalMaximum = builder.signalMaximum ?: signalMaximum
+        signalLevel = builder.signalLevel ?: signalLevel
+        primaryColor = builder.primaryColor ?: primaryColor
+        levelColor = builder.levelColor ?: levelColor
+        spacing = builder.spacing ?: spacing
+        unitWidth = builder.unitWidth ?: unitWidth
+        connected = builder.connected ?: connected
+        shadowColor = builder.shadowColor ?: shadowColor
+        shadowOpen = builder.shadowOpen ?: shadowOpen
+        initSize()
+        this.invalidate()
+    }
+
+    inner class Builder {
+        /**
+         * signal pole quantity, default is null
+         */
+        var signalMaximum: Int? = null
+            private set
+
+        /**
+         * signal level, default is null
+         */
+        var signalLevel: Int? = null
+            private set
+
+        /**
+         * signal pole primary color, default value: null
+         */
+        @ColorInt
+        var primaryColor: Int? = null
+            private set
+
+        /**
+         * signal pole level color, default color: null
+         */
+        @ColorInt
+        var levelColor: Int? = null
+            private set
+
+        /**
+         * signal pole spacing, default value: null
+         */
+        var spacing: Int? = null
+            private set
+
+        /**
+         * signal pole unit width, default value: null
+         */
+        var unitWidth: Int? = null
+            private set
+
+        /**
+         * signal connect state, true: connected; false: unconnected, default value: null
+         */
+        var connected: Boolean? = null
+            private set
+
+        /**
+         * signal pole shadow color, default color: null
+         */
+        @ColorInt
+        var shadowColor: Int? = null
+            private set
+
+        /**
+         * signal pole shadow switch, true: open,false: close, default state: false(close)
+         */
+        var shadowOpen: Boolean? = null
+            private set
+
+
+        fun setSignalMaximum(signalMaximum: Int) = apply { this.signalMaximum = signalMaximum }
+
+        fun setSignalLevel(signalLevel: Int) = apply { this.signalLevel = signalLevel }
+
+        fun setPrimaryColor(@ColorInt primaryColor: Int) =
+            apply { this.primaryColor = primaryColor }
+
+        fun setLevelColor(@ColorInt levelColor: Int) = apply { this.levelColor = levelColor }
+
+        fun setSpacing(spacing: Int) = apply { this.spacing = spacing }
+
+        fun setUnitWidth(unitWidth: Int) = apply { this.unitWidth = unitWidth }
+
+        fun setConnected(connected: Boolean) = apply { this.connected = connected }
+
+        fun setShadowColor(@ColorInt shadowColor: Int) = apply { this.shadowColor = shadowColor }
+
+        fun setShadowOpen(shadowOpen: Boolean) = apply { this.shadowOpen = shadowOpen }
+
+        fun build(){
+            this@SignalView.build(this)
+        }
+
+    }
 }

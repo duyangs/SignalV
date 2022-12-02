@@ -21,6 +21,8 @@ class MainActivity : AppCompatActivity() {
             setSignalLevel(level)
         }
 
+        signal.Builder().setSignalLevel(3).build()
+
         connectSwitch.setOnClickListener {
             signal.setConnected(connectSwitch.isChecked)
         }
